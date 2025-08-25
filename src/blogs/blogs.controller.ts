@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { BlogsService } from './blogs.service';
 import { Blog } from './schemas/blogs.schema';
 import { CreateBlogDto } from './dtos/create-blog.dto';
@@ -13,7 +13,7 @@ export class BlogsController {
   }
 
   @Post()
-  async createBlog(createBlogDto: CreateBlogDto): Promise<Blog> {
+  async createBlog(@Body() createBlogDto: CreateBlogDto): Promise<Blog> {
     return this.blogService.createBlog(createBlogDto);
   }
 }

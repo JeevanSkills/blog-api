@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateBlogDto {
   @IsString()
@@ -9,11 +9,11 @@ export class CreateBlogDto {
   @IsNotEmpty()
   readonly content: string;
 
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   readonly image: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly author: string;
+  readonly userId: string;
 }

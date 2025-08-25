@@ -6,8 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { BlogsModule } from './blogs/blogs.module';
-import { TransactionModule } from './common/transaction/transaction.module';
 import { LoggerModule } from 'nestjs-pino';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -22,7 +22,7 @@ import { LoggerModule } from 'nestjs-pino';
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
       },
     }),
-    TransactionModule,
+    CommonModule,
     UsersModule,
     AuthModule,
     BlogsModule,
