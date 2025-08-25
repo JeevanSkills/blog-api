@@ -8,10 +8,14 @@ export class ApiResponse<T> {
   message?: string;
   data: T;
 
-  constructor(data: T, statusCode: HttpStatus = HttpStatus.OK, message?: string) {
+  constructor(
+    data: T,
+    statusCode: HttpStatus = HttpStatus.OK,
+    message?: string,
+  ) {
     this.data = data;
     this.statusCode = statusCode;
-    this.success = statusCode >= 200 && statusCode < 300;
+    this.success = Number(statusCode) >= 200 && Number(statusCode) < 300;
     if (message) {
       this.message = message;
     }

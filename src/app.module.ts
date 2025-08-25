@@ -11,7 +11,7 @@ import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
-     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     MongooseModule.forRoot(process.env.DATABASE_URL as string),
     LoggerModule.forRoot({
       pinoHttp: {

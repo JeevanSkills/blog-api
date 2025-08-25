@@ -21,11 +21,13 @@ export class TransactionManager {
       await session.commitTransaction();
       this.logger.log('Transaction committed successfully');
       return result;
-    } catch (error) {
+    } catch (error: any) {
       await session.abortTransaction();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       this.logger.error('Transaction aborted due to an error', error.stack);
       throw error;
     } finally {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       session.endSession();
       this.logger.log('Transaction session ended');
     }

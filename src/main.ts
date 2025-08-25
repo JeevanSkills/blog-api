@@ -14,7 +14,7 @@ async function bootstrap() {
   //global validation
   app.useGlobalPipes(new ValidationPipe());
   //global response transformation is done using interceptor from common module
-  app.useGlobalInterceptors(new TransformInterceptor())
+  app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+void bootstrap();

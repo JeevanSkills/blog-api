@@ -5,4 +5,3 @@ export class Blog {
   author: string;
   createdAt: Date;
 }
-
