@@ -1,18 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Blog } from './schemas/blogs.schema';
+import { Inject, Injectable } from '@nestjs/common';
+import { Blog } from './domain/blog.entity';
 import { CreateBlogDto } from './dtos/create-blog.dto';
+import { BlogsRepository } from './domain/blogs.repository';
 
 @Injectable()
 export class BlogsService {
-  constructor(@InjectModel('Blog') private blogModel) {}
+  constructor(
+    @Inject(BlogsRepository)
+    private readonly blogsRepository: BlogsRepository,
+  ) {}
 
   async createBlog(createBlogDto: CreateBlogDto): Promise<Blog> {
-    const newBlog = new this.blogModel(createBlogDto);
-    return newBlog.save();
+    return this.blogsRepository.create(createBlogDto);
   }
 
   async findAll(): Promise<Blog[]> {
-    return this.blogModel.find().exec();
+    return this.blogsRepository.findAll();
   }
 }
