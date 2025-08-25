@@ -13,19 +13,14 @@ import { plainToInstance } from 'class-transformer';
 import { BlogResponseDto } from '../../blogs/dtos/blog-response.dto';
 
 @Injectable()
-export class TransformInterceptor<T>
-  implements NestInterceptor<T, ApiResponse<T>>
-{
-  intercept(
-    context: ExecutionContext,
-    next: CallHandler,
-  ): Observable<ApiResponse<T>> {
+export class TransformInterceptor<T> implements NestInterceptor<T, any> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const request = context.switchToHttp().getRequest<Request>();
     const response = context.switchToHttp().getResponse<Response>();
 
     return next.handle().pipe(
       map((data: T) => {
-        let transformedData: T | BlogResponseDto | BlogResponseDto[] = data;
+        let transformedData: any = data;
 
         // Heuristic: If the data looks like a Blog object or an array of Blog objects,
         // apply the BlogResponseDto transformation.
