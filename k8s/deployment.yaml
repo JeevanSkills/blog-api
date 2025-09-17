@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: blog-api
+  name: blog-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blog-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: blog-api
+    spec:
+      containers:
+      - image: jeeva2254/blog-api:1.0
+        name: blog-api
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
